@@ -13,6 +13,7 @@ respuestas_predefinidas = {
     "que es el habeas data": "El habeas data es el derecho constitucional que permite a toda persona conocer, actualizar y rectificar la información que se haya recogido sobre ella en bancos de datos.",
     "que es un contrato": "Un contrato es un acuerdo de voluntades entre dos o más partes que genera obligaciones jurídicamente exigibles.",
     "que es la estabilidad laboral reforzada": "Es la protección especial que tienen ciertos trabajadores (ej. en situación de discapacidad o embarazo) frente al despido sin autorización previa.",
+    "quien es el mejor jugador del mundo": "Cristiano Ronaldo es el mejor jugador del mundo",
 }
 
 # Palabras clave -> intención

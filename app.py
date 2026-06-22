@@ -88,7 +88,7 @@ SYSTEM_PROMPT = (
     f"\"{MENSAJE_FUERA_DE_TEMA}\" y no agregues nada más.\n\n"
     "Si la pregunta SÍ es jurídica, responde ÚNICAMENTE con base en las sentencias "
     "proporcionadas a continuación. Si la pregunta jurídica no puede responderse "
-    "con esa información, dilo claramente y no inventes datos. Si la respuesta son mensajes de saludos o despedidas responde amablemente y educadamente como un profesional.\n\n"
+    "con esa información, dilo claramente y no inventes datos. Si la respuesta son mensajes de saludos, despedidas, agradecimientos o charla amistosa responde amablemente y educadamente, además usa lenguaje tuteando al usuario siempre\n\n"
     "SENTENCIAS DISPONIBLES:\n\n"
     f"{CONTEXTO_SENTENCIAS}"
 )

@@ -25,6 +25,7 @@ palabras_clave = {
 CSV_PATH = os.path.join(os.path.dirname(__file__), "data", "sentencias.csv")
 
 # Palabras que indican que la pregunta es de tema jurídico/jurisprudencial
+# Palabras jurídicas
 PALABRAS_JURIDICAS = [
     "ley", "leyes", "derecho", "jurídic", "juridic", "sentencia", "fallo",
     "corte", "constitucional", "tutela", "habeas", "contrato", "demanda",
@@ -34,8 +35,32 @@ PALABRAS_JURIDICAS = [
     "víctima", "victima", "comisaría", "comisaria", "estabilidad laboral",
     "derechos", "obligación", "obligacion", "responsabilidad civil",
     "penal", "civil", "laboral", "administrativo", "trabajo", "despido",
-    "protección", "proteccion", "debida diligencia", "estado","hola",
+    "protección", "proteccion", "debida diligencia", "estado",
 ]
+
+# Palabras que siempre deben pasar al modelo sin importar si son jurídicas
+PALABRAS_PERMITIDAS = [
+    "hola", "buenas", "buenos", "gracias", "thank", "adiós", "adios",
+    "hasta", "chao", "bye", "ciao", "por favor", "ayuda", "ayúdame",
+    "qué puedo", "que puedo", "por dónde", "por donde", "recomienda",
+    "recomiéndame", "guía", "guia", "explica", "explícame", "cuéntame",
+    "cuentame", "opinión", "opinion", "qué piensas", "que piensas",
+    "qué crees", "que crees", "qué me", "que me", "cómo empiezo",
+    "como empiezo", "qué temas", "que temas", "sobre qué", "sobre que",
+]
+
+
+def es_permitida(texto: str) -> bool:
+    return any(p in texto for p in PALABRAS_PERMITIDAS)
+
+
+def es_pregunta_juridica(texto: str) -> bool:
+    return any(palabra in texto for palabra in PALABRAS_JURIDICAS)
+
+MENSAJE_FUERA_DE_TEMA = (
+    "Lo siento, solo puedo responder preguntas relacionadas con derecho y "
+    "jurisprudencia. Por favor reformula tu pregunta dentro de ese contexto."
+)
 
 
 def cargar_contexto_csv(path: str) -> str:
@@ -103,8 +128,8 @@ def obtener_respuesta(user_input: str) -> str:
         if clave in user_input_lower:
             return respuestas_predefinidas[pregunta_match]
 
-    # 3. Filtro de tema: si claramente no es jurídico, rechazar sin gastar tokens
-    if not es_pregunta_juridica(user_input_lower):
+    # 3. Filtro: pasa si es jurídica O si es social/conversacional
+    if not es_pregunta_juridica(user_input_lower) and not es_permitida(user_input_lower):
         return MENSAJE_FUERA_DE_TEMA
 
     # 4. Modelo de IA con contexto del CSV (RAG simple)

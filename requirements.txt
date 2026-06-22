@@ -1,4 +1,4 @@
 flask
 google-genai
 pymupdf
-gunicorn
+gunicorn app:app

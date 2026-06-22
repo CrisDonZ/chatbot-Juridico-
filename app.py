@@ -38,17 +38,6 @@ PALABRAS_JURIDICAS = [
 ]
 
 
-def es_pregunta_juridica(texto: str) -> bool:
-    texto_lower = texto.lower()
-    return any(palabra in texto_lower for palabra in PALABRAS_JURIDICAS)
-
-
-MENSAJE_FUERA_DE_TEMA = (
-    "Lo siento, solo puedo responder preguntas relacionadas con derecho y "
-    "jurisprudencia. Por favor reformula tu pregunta dentro de ese contexto."
-)
-
-
 def cargar_contexto_csv(path: str) -> str:
     """Lee el CSV y lo convierte en texto plano para usar como contexto del modelo."""
     bloques = []

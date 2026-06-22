@@ -1,8 +1,5 @@
 from google import genai
 
-# Crear cliente con tu API key
-client = genai.Client(api_key="AQ.Ab8RN6IvSWuUnRGF0zUXes54vAb6ERWt3nVaeyVG8hLE8BkgLw")
-
 
 for m in genai.list_models():
     print(m.name, m.supported_generation_methods)
